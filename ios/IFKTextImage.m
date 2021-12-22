@@ -25,12 +25,19 @@
 {
   return _inputFontName ?: @"Helvetica";
 }
+- (NSString *)inputTextAlign
+{
+  return _inputTextAlign ?: @"center";
+}
 
 - (CIColor *)inputColor
 {
   return _inputColor ?: [CIColor colorWithRed:0.0f green:0.0f blue:0.0f];
 }
-
+- (CIColor *)inputBackgroundColor
+{
+  return _inputBackgroundColor ?: [CIColor colorWithRed:0.0f green:0.0f blue:0.0f];
+}
 - (UIFont *)font: (NSString *)name
 {
   return [UIFont fontWithName:name
@@ -42,6 +49,9 @@
   if (self.inputExtent == nil || self.inputText == nil) {
     return nil;
   }
+   
+  NSString *inputTextAlign = [self inputTextAlign];
+  UIColor *backgroundColor = [UIColor colorWithCIColorComponents:[self inputBackgroundColor]];
 
   UIFont *font = [self font:self.inputFontName];
   CGRect frame = CGRectMake(0, 0, self.inputExtent.Z, self.inputExtent.W);

@@ -136,14 +136,16 @@ export const shapeTransforms: TransformMap<typeof shapes> = {
     inputTopRightColor: topRightColor
   }),
 
-  TextImage: ({ color, text, fontSize, fontName, image, ...config }: TextImageConfig) => ({
+  TextImage: ({ color, text, fontSize, fontName, image,backgroundColor, textAlign, ...config }: TextImageConfig) => ({
     ...config,
     name: 'IosIFKTextImage',
     inputImage: image,
     inputText: text,
     inputFontName: fontName,
     inputFontSize: fontSize,
-    inputColor: color
+    inputColor: color,
+    inputBackgroundColor: backgroundColor,
+    inputTextAlign: textAlign,
   }),
 
   CircleShape: ({ radius = '50min', color = 'black', image, ...config }: CircleShapeConfig) => ({

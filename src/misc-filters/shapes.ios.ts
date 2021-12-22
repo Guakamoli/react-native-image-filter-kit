@@ -76,6 +76,8 @@ export const shapes = {
     inputFontName: text,
     inputFontSize: distance,
     inputColor: color,
+    inputBackgroundColor:color,
+    inputTextAlign:text,
     ...Generator
   },
 

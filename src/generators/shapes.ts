@@ -59,6 +59,8 @@ export type TextImageConfig = {
   readonly fontSize?: string
   readonly image: object
   readonly color?: string
+  readonly backgroundColor?: string
+  readonly textAlign?: string
 }
 
 type ShapeConfig = {
@@ -141,6 +143,8 @@ export const shapes = {
     fontName: text,
     fontSize: distance,
     color: color,
+    backgroundColor: color,
+    textAlign: text,
     ...Generator
   },
 

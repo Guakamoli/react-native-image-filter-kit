@@ -228,6 +228,8 @@ type TextImageConfig<Rest = never> = {
   readonly fontName?: string
   readonly fontSize?: number
   readonly color?: string
+  readonly backgroundColor?: string
+  readonly textAlign?: string
 } & Partial<CommonConfig<Rest>>
 
 type ShapeConfig<Rest = never> = {
@@ -799,6 +801,9 @@ type IosCITextImageGeneratorConfig<Rest = never> = {
   readonly inputFontName?: string
   readonly inputFontSize?: Distance
   readonly inputScaleFactor?: number
+  readonly inputColor?: string
+  readonly inputBackgroundColor?: string
+  readonly inputTextAlign?: string
 } & IosCommonConfig<Rest>
 
 type IosCIHueSaturationValueGradientConfig<Rest = never> = {
@@ -944,6 +949,8 @@ type AndroidTextImageConfig<Rest = never> = {
   readonly fontName?: string
   readonly fontSize?: Distance
   readonly color?: string
+  readonly backgroundColor?: string
+  readonly textAlign?: string
 } & CommonConfig<Rest>
 
 export type ConfigCase<Name, Config> = { readonly name: Name } & Config
