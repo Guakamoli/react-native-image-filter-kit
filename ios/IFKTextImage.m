@@ -30,13 +30,26 @@
   return _inputTextAlign ?: @"center";
 }
 
+- (NSTextAlignment)_textAlignConvert:(NSString *)alignString
+{
+    if ([_inputTextAlign isEqualToString:@"left"]) {
+        return NSTextAlignmentLeft;
+    }
+    else if ([_inputTextAlign isEqualToString:@"right"]) {
+        return NSTextAlignmentRight;
+    }
+    else {
+        return NSTextAlignmentCenter;
+    }
+}
+
 - (CIColor *)inputColor
 {
   return _inputColor ?: [CIColor colorWithRed:0.0f green:0.0f blue:0.0f];
 }
 - (CIColor *)inputBackgroundColor
 {
-  return _inputBackgroundColor ?: [CIColor colorWithRed:0.0f green:0.0f blue:0.0f];
+  return _inputBackgroundColor ?: [UIColor clearColor].CIColor;
 }
 - (UIFont *)font: (NSString *)name
 {
@@ -51,13 +64,18 @@
   }
    
   NSString *inputTextAlign = [self inputTextAlign];
+  NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+  paragraphStyle.alignment = [self _textAlignConvert:inputTextAlign];
   UIColor *backgroundColor = [UIColor colorWithCIColorComponents:[self inputBackgroundColor]];
 
   UIFont *font = [self font:self.inputFontName];
   CGRect frame = CGRectMake(0, 0, self.inputExtent.Z, self.inputExtent.W);
   UIColor *color = [UIColor colorWithCIColorComponents:[self inputColor]];
   NSDictionary *attrs = @{NSFontAttributeName: font ?: [self font:@"Helvetica"],
-                          NSForegroundColorAttributeName: color};
+                          NSForegroundColorAttributeName: color,
+                          NSBackgroundColorAttributeName: backgroundColor,
+                          NSParagraphStyleAttributeName:paragraphStyle
+  };
 
   UIGraphicsBeginImageContextWithOptions(frame.size, false, 1.0f);
 
